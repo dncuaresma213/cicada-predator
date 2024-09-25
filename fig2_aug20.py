@@ -10,8 +10,8 @@ import matplotlib.pyplot as plt
 # Input constants 
 F = 3             #growth factor of host
 K = 400           #cicada carrying capacity
-c1 = 50          #predation intensity, panel (a,c)
-c2 = 50          #predation intensity, panel (b,d)
+c1 = 250          #predation intensity, panel (a,c)
+c2 = 350          #predation intensity, panel (b,d)
 N1 = 100          #initial population, panel (a,b)
 N2 = 50           #initial population, panel (c,d)
 
