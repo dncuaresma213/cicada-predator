@@ -31,7 +31,7 @@ Other parameters in the code are:
 F=3 	-- 	growth factor of the host
 K=400 	--	carrying capacity
 
-c=200	--	predation intensity, choose between these two values
+c=250	--	predation intensity, choose between these two values
 c=350
 
 N0=100	--	initial population of cicadas, choose between these two values
@@ -52,18 +52,18 @@ Nymphs that were able to escape predation maintain their population until next e
 This cycle repeats.
 The user change the values of lc and p to investigate 13-year cicadas and predation in other ages, respectively.
 
-At time T=lc\*t\_i=527, where t\_i=31 is the number of life cycle needed for the main brood to reach equilibrium, the stragglers are introduced.
+At time T=lc\*t\_i=187, where t\_i=11 is the number of life cycle needed for the main brood to reach equilibrium, the stragglers are introduced.
 In the code, the stragglers were introduced y=13 years after the main brood emergence.
 There are jj=60 stragglers cicadas introduced, leaving the main brood with N0=N[T+y]-jj cicadas left.
-Starting at T+y+1, the code simulates the life cycle of two broods simultaneously.
+Starting at T+y-1, the code simulates the life cycle of two broods simultaneously.
 Stragglers emerge and reproduce every t%17=y%17.
 Stragglers face predation every t%17=(y+1)%17.
 Stragglers that escape predation maintain their population until next emergence.
 This cycle repeats.
-The total simulation time is t\_end=1037.
+The total simulation time is t\_end=697.
 
 Other parameters in the code are:
 F=3 	-- 	growth factor of the host
 K=400 	--	carrying capacity
-cL=350	--	predation intensity
+cL=250	--	predation intensity
 NL=100	--	initial population of cicadas
