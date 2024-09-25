@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 # Input parameters
 K = 400           #cicada carrying capacity
 F = 3             #growth factor for cicada
-cL = 350          #predation intensity, 17-year
+cL = 250          #predation intensity, 17-year
 NL = 100          #main brood, initial population, 17-year
 #cL = 200            #predation intensity, 13-year 
 #NL = 50             #main brood, initial population, 13-year
@@ -23,17 +23,16 @@ J = []            #straggler, population density
 # Time count
 lc = 17           #life cycle of host, can be 13 or 17
 p = 1             #age at predation
-t_i = 31          #cycles to equi
+t_i = 11          #cycles to equi
 T = lc*t_i        #intro time
-t_end = 17*61     #total sim time
+t_end = 17*31     #total sim time
 
-jj=60            #straggler, initial population 
+jj=30            #straggler, initial population 
 N.clear(); J.clear(); N.append(NL); J.append(0)
-
 # During the first T years (t_i cycles), stragglers are inexistent, i.e., J[t]=0 for t<T.
 for t in range(0,t_end+1) :
-    if t < T+y :                                     #accelerated emergence
-    #if t < T :                                       #delayed emergence  
+    if t < T+y-1 :                                     #accelerated emergence
+#    if t < T :                                       #delayed emergence  
         if t%lc==0 :
             if N[t] >= 1 : N.append(F*(1-N[t]/K)*N[t])
             else : N.append(0)
@@ -49,9 +48,9 @@ for t in range(0,t_end+1) :
 # After T, stragglers are introduced. 
 # Choose when straggler brood emerge.
 # Accelerated emergence, for y>=9.  
-    if t == T+y :                               
+    if t == T+y-1 :                               
         N.append(N[t]-jj)                            #population of main brood is reduced by how many emerged eariler
-        J.append(F*(1-jj/K)*jj)                      #jj adult cicadas emerged early, they reproduce
+        J.append(jj)                                 #jj adult cicadas emerged early
 
 # Delayed emergence, for y<9.
 #    if t == T :
@@ -59,7 +58,7 @@ for t in range(0,t_end+1) :
 #        if n0 >= 1 : N.append(F*(1-n0/K)*n0)
 #        else : N.append(0)
 #        J.append(0)
-#    if t > T and t < T+y :
+#    if t > T and t < T+y-1 :
 #        if t%lc==p :
 #            if (1-m.exp(-N[t]/cL))*N[t] >= 0 : N.append((1-m.exp(-N[t]/cL))*N[t])
 #            else : N.append(0)
@@ -67,17 +66,17 @@ for t in range(0,t_end+1) :
 #        else :
 #            N.append(N[t])
 #            J.append(0)
-#    if t == T+y :
+#    if t == T+y-1 :
 #        if t%lc==p :
 #            if (1-m.exp(-N[t]/cL))*N[t] >= 0 : N.append((1-m.exp(-N[t]/cL))*N[t])
 #            else : N.append(0)
-#            J.append(F*(1-jj/K)*jj)
+#            J.append(jj)
 #        else :
 #            N.append(N[t])
-#            J.append(F*(1-jj/K)*jj)
+#            J.append(jj)
        
 # Dynamics of two broods, main and straggler                    
-    if t > T+y :
+    if t > T+y-1 :
         if t%lc==0 : #reproduction main brood
             if t%lc==y%lc: #reproduction straggler brood
                 if N[t] >= 1 : N.append(F*(1-N[t]/K)*N[t])
@@ -125,8 +124,6 @@ plt.plot(J, linestyle="-", color="green", linewidth=2.0, label="Straggler brood"
 plt.xlabel("Time, $t$ (in years)")#, fontsize=22)
 plt.ylabel("Population, $N(t)$, $J(t)$")#, fontsize=22)
 plt.ylim(0,350)
-plt.xlim(T,t_end)
-#plt.yticks(fontsize=18)
 
 plt.show()
 
